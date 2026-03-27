@@ -31,8 +31,8 @@ const DashboardSidebar = ({ activePage, onNavigate }: SidebarProps) => {
         <AnimatePresence>
           {!collapsed && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-hidden">
-              <p className="text-sm font-bold text-sidebar-foreground tracking-wide">LPISTH</p>
-              <p className="text-xs text-sidebar-muted">Electricity Dept.</p>
+              <p className="text-sm font-bold text-sidebar-foreground tracking-wide">LNECC</p>
+              <p className="text-xs text-sidebar-muted">Command Center</p>
             </motion.div>
           )}
         </AnimatePresence>
