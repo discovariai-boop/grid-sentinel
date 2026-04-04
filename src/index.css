@@ -152,6 +152,18 @@
 }
 
 .leaflet-container {
-  background: hsl(210 20% 98%) !important;
+  background: hsl(220 20% 10%) !important;
   border-radius: var(--radius);
+}
+
+.leaflet-popup-content-wrapper {
+  background: hsl(0 0% 100% / 0.95) !important;
+  backdrop-filter: blur(12px);
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15) !important;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px currentColor); }
+  50% { filter: drop-shadow(0 0 12px currentColor); }
 }
