@@ -50,17 +50,28 @@ export const powerStations: PowerStation[] = [
   { id: "ps10", name: "Bela-Bela Substation", type: "substation", lat: -24.88, lng: 28.29, capacity: 300, currentLoad: 210, status: "normal" },
 ];
 
-// Limpopo transmission lines
-export const transmissionLines: [number, number][][] = [
-  [[-23.68, 27.55], [-23.67, 27.60]],  // Medupi to Matimba
-  [[-23.68, 27.55], [-24.19, 29.00]],  // Medupi to Mokopane
-  [[-24.19, 29.00], [-23.90, 29.45]],  // Mokopane to Polokwane
-  [[-23.90, 29.45], [-23.83, 30.16]],  // Polokwane to Tzaneen
-  [[-23.90, 29.45], [-23.08, 30.48]],  // Polokwane to Thohoyandou
-  [[-22.35, 30.04], [-23.08, 30.48]],  // Musina to Thohoyandou
-  [[-24.19, 29.00], [-24.88, 28.29]],  // Mokopane to Bela-Bela
-  [[-23.68, 27.55], [-23.45, 28.42]],  // Medupi to Tom Burke Wind
-  [[-22.35, 30.04], [-23.90, 29.45]],  // Musina to Polokwane
+export interface TransmissionLine {
+  id: string;
+  from: string;
+  to: string;
+  coordinates: [number, number][];
+  voltage: number; // kV
+  status: "normal" | "warning" | "critical" | "offline";
+  loadPercent: number;
+  label: string;
+}
+
+// Limpopo transmission lines with status
+export const transmissionLines: TransmissionLine[] = [
+  { id: "tl1", from: "ps1", to: "ps2", coordinates: [[-23.68, 27.55], [-23.67, 27.60]], voltage: 400, status: "normal", loadPercent: 62, label: "Medupi–Matimba 400kV" },
+  { id: "tl2", from: "ps1", to: "ps8", coordinates: [[-23.68, 27.55], [-23.95, 28.30], [-24.19, 29.00]], voltage: 400, status: "critical", loadPercent: 94, label: "Medupi–Mokopane 400kV" },
+  { id: "tl3", from: "ps8", to: "ps4", coordinates: [[-24.19, 29.00], [-24.05, 29.25], [-23.90, 29.45]], voltage: 275, status: "warning", loadPercent: 85, label: "Mokopane–Polokwane 275kV" },
+  { id: "tl4", from: "ps4", to: "ps6", coordinates: [[-23.90, 29.45], [-23.87, 29.80], [-23.83, 30.16]], voltage: 132, status: "critical", loadPercent: 97, label: "Polokwane–Tzaneen 132kV" },
+  { id: "tl5", from: "ps4", to: "ps7", coordinates: [[-23.90, 29.45], [-23.50, 29.95], [-23.08, 30.48]], voltage: 132, status: "normal", loadPercent: 55, label: "Polokwane–Thohoyandou 132kV" },
+  { id: "tl6", from: "ps5", to: "ps7", coordinates: [[-22.35, 30.04], [-22.70, 30.26], [-23.08, 30.48]], voltage: 132, status: "normal", loadPercent: 48, label: "Musina–Thohoyandou 132kV" },
+  { id: "tl7", from: "ps8", to: "ps10", coordinates: [[-24.19, 29.00], [-24.55, 28.65], [-24.88, 28.29]], voltage: 275, status: "normal", loadPercent: 58, label: "Mokopane–Bela-Bela 275kV" },
+  { id: "tl8", from: "ps1", to: "ps9", coordinates: [[-23.68, 27.55], [-23.56, 27.98], [-23.45, 28.42]], voltage: 132, status: "normal", loadPercent: 40, label: "Medupi–Tom Burke 132kV" },
+  { id: "tl9", from: "ps5", to: "ps4", coordinates: [[-22.35, 30.04], [-23.10, 29.75], [-23.90, 29.45]], voltage: 275, status: "warning", loadPercent: 78, label: "Musina–Polokwane 275kV" },
 ];
 
 export const incidents: Incident[] = [
