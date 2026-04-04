@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Zap, AlertTriangle, Users, Activity, Bell, Search, Radio, Shield } from "lucide-react";
+import { Zap, AlertTriangle, Users, Activity, Bell, Search, Shield } from "lucide-react";
 import DashboardSidebar from "@/components/DashboardSidebar";
 import MetricCard from "@/components/MetricCard";
 import GridMap from "@/components/GridMap";
@@ -11,10 +11,10 @@ import EmergencyPage from "@/components/EmergencyPage";
 import AssetsPage from "@/components/AssetsPage";
 import PowerGridBackground from "@/components/PowerGridBackground";
 import { incidents, powerStations } from "@/data/mockData";
+import eskomLogo from "@/assets/eskom-logo.jpg";
 
 const OverviewPage = () => (
   <div className="space-y-6">
-    {/* Command Center Status Banner */}
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -25,19 +25,17 @@ const OverviewPage = () => (
         transition={{ duration: 2, repeat: Infinity }}
         className="w-2.5 h-2.5 rounded-full bg-success"
       />
-      <span className="text-xs font-semibold text-foreground">GRID STATUS: OPERATIONAL</span>
+      <span className="text-xs font-semibold text-foreground">GRID STATUS: OPERATIONAL · LOAD SHEDDING STAGE 0</span>
       <span className="text-xs text-muted-foreground ml-auto font-mono">LAST SYNC: {new Date().toLocaleTimeString()}</span>
     </motion.div>
 
-    {/* Metrics Row */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <MetricCard title="National Load" value="168" unit="MW" icon={Zap} status="normal" delay={0} trend={{ value: 3.2, label: "vs yesterday" }} />
-      <MetricCard title="Active Outages" value="3" icon={AlertTriangle} status="critical" delay={0.1} trend={{ value: 50, label: "vs last week" }} />
-      <MetricCard title="Affected Population" value="65,000" icon={Users} status="warning" delay={0.2} />
-      <MetricCard title="Emergency Impact" value="2" unit="services" icon={Activity} status="critical" delay={0.3} />
+      <MetricCard title="Provincial Load" value="8,550" unit="MW" icon={Zap} status="normal" delay={0} trend={{ value: 2.8, label: "vs yesterday" }} />
+      <MetricCard title="Active Outages" value="5" icon={AlertTriangle} status="critical" delay={0.1} trend={{ value: 25, label: "vs last week" }} />
+      <MetricCard title="Affected Population" value="132,800" icon={Users} status="warning" delay={0.2} />
+      <MetricCard title="Emergency Impact" value="3" unit="services" icon={Activity} status="critical" delay={0.3} />
     </div>
 
-    {/* Map + Incidents */}
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 h-[500px]">
         <GridMap />
@@ -54,7 +52,6 @@ const OverviewPage = () => (
       </div>
     </div>
 
-    {/* Station Load Overview */}
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass-card p-5">
       <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
         <Zap className="w-4 h-4 text-primary" /> Power Station Load
@@ -100,14 +97,16 @@ const ElectricityDashboard = () => {
       <PowerGridBackground />
       <DashboardSidebar activePage={activePage} onNavigate={setActivePage} />
       <main className="flex-1 overflow-y-auto relative z-10">
-        {/* Top Bar */}
         <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-xl border-b border-border px-6 py-3 flex items-center justify-between">
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-lg font-bold text-foreground">Lesotho National Electricity Command Center</h1>
-              <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-primary/15 text-primary border border-primary/20 tracking-wider">LIVE</span>
+          <div className="flex items-center gap-3">
+            <img src={eskomLogo} alt="Eskom" className="w-9 h-9 rounded-lg object-cover" />
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-lg font-bold text-foreground">Limpopo Provincial Electricity Command Center</h1>
+                <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-primary/15 text-primary border border-primary/20 tracking-wider">LIVE</span>
+              </div>
+              <p className="text-xs text-muted-foreground">LPECC · Eskom Limpopo Operating Unit · Grid Monitoring & Emergency Response</p>
             </div>
-            <p className="text-xs text-muted-foreground">LNECC · National Power Grid Monitoring & Emergency Response</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -119,7 +118,7 @@ const ElectricityDashboard = () => {
             </div>
             <button className="relative p-2 rounded-lg hover:bg-muted transition-colors">
               <Bell className="w-5 h-5 text-muted-foreground" />
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-danger text-danger-foreground text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-danger text-danger-foreground text-[10px] font-bold rounded-full flex items-center justify-center">5</span>
             </button>
             <div className="h-6 w-px bg-border" />
             <div className="flex items-center gap-2">
@@ -128,7 +127,7 @@ const ElectricityDashboard = () => {
               </div>
               <div className="hidden lg:block">
                 <p className="text-xs font-semibold text-foreground">Commander</p>
-                <p className="text-[10px] text-muted-foreground">LNECC Ops</p>
+                <p className="text-[10px] text-muted-foreground">Eskom Limpopo Ops</p>
               </div>
             </div>
           </div>

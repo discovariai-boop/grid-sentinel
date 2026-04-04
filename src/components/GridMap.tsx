@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from "react-leaflet";
 import { motion } from "framer-motion";
-import { powerStations } from "@/data/mockData";
+import { powerStations, transmissionLines } from "@/data/mockData";
 import "leaflet/dist/leaflet.css";
 
 const statusColors = {
@@ -12,20 +11,12 @@ const statusColors = {
 };
 
 const typeLabels = {
-  hydro: "⚡ Hydropower",
+  coal: "🏭 Coal Power Station",
   solar: "☀️ Solar Farm",
-  thermal: "🔥 Thermal Plant",
+  hydro: "⚡ Hydropower",
   substation: "🔌 Substation",
+  wind: "💨 Wind Farm",
 };
-
-const transmissionLines: [number, number][][] = [
-  [[-29.25, 28.85], [-28.87, 28.05]],
-  [[-28.87, 28.05], [-28.77, 28.25]],
-  [[-29.25, 28.85], [-29.52, 28.61]],
-  [[-29.31, 27.48], [-29.82, 27.24]],
-  [[-29.52, 28.61], [-30.12, 28.68]],
-  [[-29.25, 28.85], [-29.89, 28.92]],
-];
 
 const GridMap = () => {
   return (
@@ -36,8 +27,8 @@ const GridMap = () => {
       className="glass-card overflow-hidden h-full"
     >
       <MapContainer
-        center={[-29.5, 28.2]}
-        zoom={8}
+        center={[-23.5, 29.0]}
+        zoom={7}
         className="w-full h-full min-h-[400px]"
         style={{ borderRadius: "var(--radius)" }}
       >
@@ -46,26 +37,24 @@ const GridMap = () => {
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
 
-        {/* Transmission Lines */}
         {transmissionLines.map((line, i) => (
           <Polyline
             key={`line-${i}`}
             positions={line}
             pathOptions={{
-              color: "#facc15",
+              color: "#2563eb",
               weight: 2,
-              opacity: 0.6,
+              opacity: 0.5,
               dashArray: "8 4",
             }}
           />
         ))}
 
-        {/* Power Stations */}
         {powerStations.map((station) => (
           <CircleMarker
             key={station.id}
             center={[station.lat, station.lng]}
-            radius={station.type === "substation" ? 8 : 12}
+            radius={station.type === "substation" ? 8 : 14}
             pathOptions={{
               color: statusColors[station.status],
               fillColor: statusColors[station.status],

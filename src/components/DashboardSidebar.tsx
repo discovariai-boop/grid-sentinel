@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, LayoutDashboard, AlertTriangle, BarChart3, Shield, Wrench, ChevronLeft, ChevronRight, Bell } from "lucide-react";
+import { Zap, LayoutDashboard, AlertTriangle, BarChart3, Shield, Wrench, ChevronLeft, ChevronRight } from "lucide-react";
+import eskomLogo from "@/assets/eskom-logo.jpg";
 
 interface SidebarProps {
   activePage: string;
@@ -25,14 +26,12 @@ const DashboardSidebar = ({ activePage, onNavigate }: SidebarProps) => {
       className="h-screen bg-sidebar flex flex-col border-r border-sidebar-border relative z-20"
     >
       <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
-        <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-          <Zap className="w-5 h-5 text-primary-foreground" />
-        </div>
+        <img src={eskomLogo} alt="Eskom" className="w-10 h-10 rounded-lg object-cover flex-shrink-0" />
         <AnimatePresence>
           {!collapsed && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="overflow-hidden">
-              <p className="text-sm font-bold text-sidebar-foreground tracking-wide">LNECC</p>
-              <p className="text-xs text-sidebar-muted">Command Center</p>
+              <p className="text-sm font-bold text-sidebar-foreground tracking-wide">LPECC</p>
+              <p className="text-xs text-sidebar-muted">Limpopo · Eskom</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -54,7 +53,7 @@ const DashboardSidebar = ({ activePage, onNavigate }: SidebarProps) => {
               )}
             </AnimatePresence>
             {item.id === "incidents" && !collapsed && (
-              <span className="ml-auto bg-danger text-danger-foreground text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+              <span className="ml-auto bg-danger text-danger-foreground text-xs font-bold px-2 py-0.5 rounded-full">5</span>
             )}
           </button>
         ))}
