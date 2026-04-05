@@ -5,17 +5,17 @@ import LoadGauge from "@/components/LoadGauge";
 
 const AssetsPage = () => {
   const maintenanceSchedule = [
-    { asset: "Leribe Substation", task: "Transformer inspection", date: "Jan 20, 2024", crew: "Team Alpha", priority: "urgent" as const },
-    { asset: "Qacha's Nek Thermal", task: "Turbine overhaul", date: "Jan 22, 2024", crew: "Team Bravo", priority: "urgent" as const },
-    { asset: "Maseru Solar Farm", task: "Inverter replacement", date: "Jan 25, 2024", crew: "Team Charlie", priority: "normal" as const },
-    { asset: "Butha-Buthe Sub", task: "Routine inspection", date: "Feb 10, 2024", crew: "Team Delta", priority: "normal" as const },
+    { asset: "Polokwane Substation", task: "Transformer inspection", date: "Jan 20, 2024", crew: "Team Alpha", priority: "urgent" as const },
+    { asset: "Tzaneen Substation", task: "Breaker overhaul", date: "Jan 22, 2024", crew: "Team Bravo", priority: "urgent" as const },
+    { asset: "Lephalale Solar Park", task: "Inverter replacement", date: "Jan 25, 2024", crew: "Team Charlie", priority: "normal" as const },
+    { asset: "Mokopane Substation", task: "Routine inspection", date: "Feb 10, 2024", crew: "Team Delta", priority: "normal" as const },
   ];
 
   const backupGenerators = [
-    { location: "Queen Elizabeth II Hospital", fuel: 72, status: "active" as const },
-    { location: "Maseru Border Post", fuel: 95, status: "standby" as const },
-    { location: "LPISTH Command Center", fuel: 88, status: "standby" as const },
-    { location: "Moshoeshoe I Airport", fuel: 45, status: "active" as const },
+    { location: "Mankweng Hospital, Polokwane", fuel: 72, status: "active" as const },
+    { location: "Beitbridge Border Post", fuel: 95, status: "standby" as const },
+    { location: "LPECC Command Center", fuel: 88, status: "standby" as const },
+    { location: "Polokwane International Airport", fuel: 45, status: "active" as const },
   ];
 
   return (
